@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partidas — La Murada Airsoft</title>
+  <meta name="description" content="Próximas partidas de La Murada Airsoft en Orihuela, Alicante. Sunday Match y eventos especiales.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto+Condensed:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #1a1a1a;
+      --primary: #b8952b;
+      --primary-light: #d4af4a;
+      --accent: #c9393b;
+      --text: #f0f0f0;
+      --text-muted: #888888;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Roboto Condensed', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184,149,43,0.2);
+    }
+
+    .nav-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--primary);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--primary); }
+
+    .nav-cta {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--primary);
+      padding: 0.5rem 1.2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-cta:hover { background: var(--primary-light); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      position: relative;
+      padding: 8rem 2rem 5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(184,149,43,0.08) 0%, transparent 60%),
+        var(--bg);
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-hero-badge {
+      display: inline-block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.4rem 1.2rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .page-hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero-title span { color: var(--primary); }
+
+    .page-hero-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── FILTERS ── */
+    .filters-bar {
+      padding: 1.5rem 2rem;
+      background: var(--bg2);
+      border-top: 1px solid rgba(184,149,43,0.1);
+      border-bottom: 1px solid rgba(184,149,43,0.1);
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid rgba(184,149,43,0.2);
+      padding: 0.5rem 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(184,149,43,0.08);
+    }
+
+    /* ── MATCHES GRID ── */
+    .matches-section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .matches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    /* ── MATCH CARD ── */
+    .match-card {
+      background: var(--bg2);
+      border: 1px solid rgba(184,149,43,0.15);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .match-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .match-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(184,149,43,0.1);
+    }
+
+    .match-card-header {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .match-card-header img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.4) brightness(0.7);
+      transition: all 0.4s ease;
+    }
+
+    .match-card:hover .match-card-header img {
+      filter: grayscale(0) brightness(0.8);
+      transform: scale(1.05);
+    }
+
+    .match-card-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(26,26,26,0.95) 100%);
+    }
+
+    .match-type-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 2;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+    }
+
+    .badge-presencial {
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      background: rgba(201,57,59,0.15);
+    }
+
+    .badge-evento {
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      background: rgba(184,149,43,0.15);
+    }
+
+    .badge-abierta {
+      color: #4caf50;
+      border: 1px solid #4caf50;
+      background: rgba(76,175,80,0.15);
+    }
+
+    .match-card-header .date-overlay {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 2;
+      text-align: right;
+    }
+
+    .match-card-header .date-overlay .day {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .match-card-header .date-overlay .month {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    .match-card-body {
+      padding: 1.8rem;
+    }
+
+    .match-card-body h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.8rem;
+    }
+
+    .match-card-body .match-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .match-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(184,149,43,0.1);
+    }
+
+    .match-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .match-meta-item i {
+      color: var(--primary);
+      width: 18px;
+      text-align: center;
+    }
+
+    .match-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .status-open .status-dot { background: #4caf50; box-shadow: 0 0 6px #4caf50; }
+    .status-open .status-text { color: #4caf50; }
+
+    .status-full .status-dot { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+    .status-full .status-text { color: var(--accent); }
+
+    .status-past .status-dot { background: var(--text-muted); }
+    .status-past .status-text { color: var(--text-muted); }
+
+    .match-card-actions {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .btn-card {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.7rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-card-primary {
+      color: var(--bg);
+      background: var(--primary);
+    }
+
+    .btn-card-primary:hover {
+      background: var(--primary-light);
+      box-shadow: 0 0 20px rgba(184,149,43,0.3);
+    }
+
+    .btn-card-outline {
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    .btn-card-outline:hover {
+      background: rgba(184,149,43,0.08);
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--bg2);
+      text-align: center;
+      padding: 6rem 2rem;
+      position: relative;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    .cta-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .cta-title span { color: var(--primary); }
+
+    .cta-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--primary);
+      border: none;
+      padding: 1rem 3rem;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      animation: ctaPulse 3s infinite;
+    }
+
+    .btn-cta:hover {
+      background: var(--primary-light);
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(184,149,43,0.4);
+    }
+
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(184,149,43,0.3); }
+      50% { box-shadow: 0 0 0 12px rgba(184,149,43,0); }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid rgba(184,149,43,0.1);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-social a {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-social a:hover { color: var(--primary); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0.8rem 1rem; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .matches-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="home.html" class="nav-logo">La Murada Airsoft</a>
+    <ul class="nav-links">
+      <li><a href="home.html">Inicio</a></li>
+      <li><a href="partidas.html" class="active">Partidas</a></li>
+    </ul>
+    <a href="https://t.me/lamuradaairsoft" target="_blank" class="nav-cta">Apúntate</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-badge">📅 Calendario</div>
+      <h1 class="page-hero-title">PARTIDAS</h1>
+      <p class="page-hero-sub">Todas las próximas jornadas. Sunday Match, eventos especiales y partidas abiertas. Apúntate antes de que se llenen.</p>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <div class="filters-bar">
+    <button class="filter-btn active" data-filter="all">Todas</button>
+    <button class="filter-btn" data-filter="presencial">Sunday Match</button>
+    <button class="filter-btn" data-filter="evento">Eventos</button>
+    <button class="filter-btn" data-filter="abierta">Abiertas</button>
+  </div>
+
+  <!-- MATCHES -->
+  <section class="matches-section">
+    <div class="matches-grid">
+
+      <!-- CARD: Sunday Match -->
+      <article class="match-card" data-type="presencial">
+        <div class="match-card-header">
+          <img src="/root/.openclaw/media/inbound/file_53---8a83fa41-8fbc-49a3-ab56-eafb0a0f4192.jpg" alt="Sunday Match">
+          <div class="match-type-badge badge-presencial">🔥 Presencial</div>
+          <div class="date-overlay">
+            <div class="day">10</div>
+            <div class="month">Mayo 2026</div>
+          </div>
+        </div>
+        <div class="match-card-body">
+          <h3>Sunday Match</h3>
+          <p class="match-desc">La jornada clásica. Sin florituras. Llegas, juegas, te lo pasas. Ideal para todos los niveles.</p>
+          <div class="match-meta">
+            <div class="match-meta-item">
+              <i class="fas fa-clock"></i>
+              <span>08:30 — 14:30</span>
+            </div>
+            <div class="match-meta-item">
+              <i class="fas fa-location-dot"></i>
+              <span>La Murada, Orihuela</span>
+            </div>
+            <div class="match-meta-item">
+              <i class="fas fa-signal"></i>
+              <span>Plazas limitadas</span>
+            </div>
+          </div>
+          <div class="match-status status-open">
+            <span class="status-dot"></span>
+            <span class="status-text">Abierta</span>
+          </div>
+        </div>
+        <div class="match-card-actions" style="padding: 0 1.8rem 1.8rem;">
+          <a href="https://t.me/lamuradaairsoft" target="_blank" class="btn-card btn-card-primary">
+            <i class="fab fa-telegram"></i> Apúntate
+          </a>
+          <a href="home.html" class="btn-card btn-card-outline">
+            <i class="fas fa-info-circle"></i> Info
+          </a>
+        </div>
+      </article>
+
+      <!-- CARD: Evento Especial -->
+      <article class="match-card" data-type="evento">
+        <div class="match-card-header">
+          <img src="/root/.openclaw/media/inbound/file_53---8a83fa41-8fbc-49a3-ab56-eafb0a0f4192.jpg" alt="Night Ops">
+          <div class="match-type-badge badge-evento">🎯 Evento</div>
+          <div class="date-overlay">
+            <div class="day">24</div>
+            <div class="month">Mayo 2026</div>
+          </div>
+        </div>
+        <div class="match-card-body">
+          <h3>Night Ops</h3>
+          <p class="match-desc">Partida nocturna. Mapa cerrado, visibilidad reducida, estrategia pura. Linternas y cuidadito.</p>
+          <div class="match-meta">
+            <div class="match-meta-item">
+              <i class="fas fa-clock"></i>
+              <span>21:00 — 02:00</span>
+            </div>
+            <div class="match-meta-item">
+              <i class="fas fa-location-dot"></i>
+              <span>La Murada, Orihuela</span>
+            </div>
+            <div class="match-meta-item">
+              <i class="fas fa-users"></i>
+              <span>Máx 30 jugadores</span>
+            </div>
+          </div>
+          <div class="match-status status-open">
+            <span class="status-dot"></span>
+            <span class="status-text">Abierta</span>
+          </div>
+        </div>
+        <div class="match-card-actions" style="padding: 0 1.8rem 1.8rem;">
+          <a href="https://t.me/lamuradaairsoft" target="_blank" class="btn-card btn-card-primary">
+            <i class="fab fa-telegram"></i> Apúntate
+          </a>
+          <a href="#" class="btn-card btn-card-outline">
+            <i class="fas fa-info-circle"></i> Info
+          </a>
+        </div>
+      </article>
+
+      <!-- CARD: Abierta -->
+      <article class="match-card" data-type="abierta">
+        <div class="match-card-header">
+          <img src="/root/.openclaw/media/inbound/file_53---8a83fa41-8fbc-49a3-ab56-eafb0a0f4192.jpg" alt="Partida Abierta">
+          <div class="match-type-badge badge-abierta">🟢 Abierta</div>
+          <div class="date-overlay">
+            <div class="day">07</div>
+            <div class="month">Junio 2026</div>
+          </div>
+        </div>
+        <div class="match-card-body">
+          <h3>Partida Abierta</h3>
+          <p class="match-desc">Cualquiera puede apuntarse. Ven con tu equipo o solo. Todos los niveles bienvenidos.</p>
+          <div class="match-meta">
+            <div class="match-meta-item">
+              <i class="fas fa-clock"></i>
+              <span>09:00 — 15:00</span>
+            </div>
+            <div class="match-meta-item">
+              <i class="fas fa-location-dot"></i>
+              <span>La Murada, Orihuela</span>
+            </div>
+            <div class="match-meta-item">
+              <i class="fas fa-signal"></i>
+              <span>Abierta a todos</span>
+            </div>
+          </div>
+          <div class="match-status status-open">
+            <span class="status-dot"></span>
+            <span class="status-text">Abierta</span>
+          </div>
+        </div>
+        <div class="match-card-actions" style="padding: 0 1.8rem 1.8rem;">
+          <a href="https://t.me/lamuradaairsoft" target="_blank" class="btn-card btn-card-primary">
+            <i class="fab fa-telegram"></i> Apúntate
+          </a>
+          <a href="#" class="btn-card btn-card-outline">
+            <i class="fas fa-info-circle"></i> Info
+          </a>
+        </div>
+      </article>
+
+      <!-- CARD: Sunday Match 2 -->
+      <article class="match-card" data-type="presencial">
+        <div class="match-card-header">
+          <img src="/root/.openclaw/media/inbound/file_53---8a83fa41-8fbc-49a3-ab56-eafb0a0f4192.jpg" alt="Sunday Match">
+          <div class="match-type-badge badge-presencial">🔥 Presencial</div>
+          <div class="date-overlay">
+            <div class="day">14</div>
+            <div class="month">Junio 2026</div>
+          </div>
+        </div>
+        <div class="match-card-body">
+          <h3>Sunday Match</h3>
+          <p class="match-desc">Segunda quota mensual. Mismo formato, misma intensidad. No te la pierdas.</p>
+          <div class="match-meta">
+            <div class="match-meta-item">
+              <i class="fas fa-clock"></i>
+              <span>08:30 — 14:30</span>
+            </div>
+            <div class="match-meta-item">
+              <i class="fas fa-location-dot"></i>
+              <span>La Murada, Orihuela</span>
+            </div>
+            <div class="match-meta-item">
+              <i class="fas fa-signal"></i>
+              <span>Plazas limitadas</span>
+            </div>
+          </div>
+          <div class="match-status status-open">
+            <span class="status-dot"></span>
+            <span class="status-text">Abierta</span>
+          </div>
+        </div>
+        <div class="match-card-actions" style="padding: 0 1.8rem 1.8rem;">
+          <a href="https://t.me/lamuradaairsoft" target="_blank" class="btn-card btn-card-primary">
+            <i class="fab fa-telegram"></i> Apúntate
+          </a>
+          <a href="home.html" class="btn-card btn-card-outline">
+            <i class="fas fa-info-circle"></i> Info
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-title">¿No ves tu fecha?<br><span>Pregunta en Telegram</span></div>
+    <p class="cta-sub">Las partidas se publican en el grupo. Si falta algo, lo preguntamos y lo organizamos.</p>
+    <a href="https://t.me/lamuradaairsoft" target="_blank" class="btn-cta">
+      <i class="fab fa-telegram"></i>
+      Grupo de Telegram
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">La Murada Airsoft</div>
+    <div class="footer-social">
+      <a href="https://t.me/lamuradaairsoft" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+    </div>
+    <div class="footer-copy">© 2026 La Murada Airsoft. Todos los derechos reservados.</div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.match-card').forEach(el => observer.observe(el));
+
+    // Filters
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.match-card').forEach(card => {
+          if (filter === 'all' || card.dataset.type === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
