@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería — La Murada Airsoft</title>
+  <meta name="description" content="Galería de fotos del campo La Murada Airsoft en Orihuela, Alicante.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto+Condensed:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root { --bg: #0a0a0a; --bg2: #1a1a1a; --primary: #b8952b; --primary-light: #d4af4a; --accent: #c9393b; --text: #f0f0f0; --text-muted: #888888; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto Condensed', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(184,149,43,0.2); }
+    .nav-logo { font-family: 'Oswald', sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; color: var(--primary); text-transform: uppercase; text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: 'Oswald', sans-serif; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
+    .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+    .nav-cta { font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--bg); background: var(--primary); padding: 0.5rem 1.2rem; border-radius: 4px; text-decoration: none; }
+    .nav-cta:hover { background: var(--primary-light); }
+
+    .page-hero {
+      position: relative;
+      padding: 10rem 2rem 6rem;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(10,10,10,0) 0%, var(--bg) 100%);
+    }
+
+    .page-hero-badge {
+      display: inline-block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.4rem 1.2rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .page-hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-section { padding: 5rem 2rem; }
+    .section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+    .section-label { font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; letter-spacing: 4px; color: var(--primary); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .section-title { font-family: 'Oswald', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 3rem; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      aspect-ratio: 16/10;
+      border: 1px solid rgba(184,149,43,0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    .gallery-item:hover {
+      border-color: var(--primary);
+      transform: scale(1.02);
+      box-shadow: 0 0 30px rgba(184,149,43,0.2);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(10,10,10,0.9) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+    .gallery-item-overlay .gallery-item-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .gallery-item-overlay .gallery-item-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">La Murada Airsoft</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="partidas.html">Partidas</a></li>
+      <li><a href="galeria.html" class="active">Fotos</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <a href="https://t.me/lamuradaairsoft" target="_blank" class="nav-cta">Apúntate</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-badge">📷 Galería</div>
+    <h1 class="page-hero-title">FOTOS DEL<br><span>CAMPO</span></h1>
+    <p class="page-hero-sub">Echa un vistazo a las instalaciones y sesiones del campo La Murada Airsoft. Siempre en acción.</p>
+  </section>
+
+  <!-- GALLERY GRID -->
+  <section class="gallery-section">
+    <div class="section">
+      <div class="section-label">📷 Galería</div>
+      <h2 class="section-title">El Campo en Imágenes</h2>
+      <div class="gallery-grid">
+
+        <div class="gallery-item">
+          <img src="campo.jpg" alt="Vista general del campo">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-title">Vista General</div>
+            <div class="gallery-item-sub">Zona principal</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="campo.jpg" alt="Zona de bosque">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-title">Zona de Bosque</div>
+            <div class="gallery-item-sub">Terreno natural</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="campo.jpg" alt="Acción en partida">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-title">Acción en Partida</div>
+            <div class="gallery-item-sub">Terreno variado</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="campo.jpg" alt="Edificio abandonado">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-title">Edificio Abandonado</div>
+            <div class="gallery-item-sub">Zona urbana</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="campo.jpg" alt="Acción en partida">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-title">Acción en Partida</div>
+            <div class="gallery-item-sub">Terreno variado</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="campo.jpg" alt="Acción en partida">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-title">Acción en Partida</div>
+            <div class="gallery-item-sub">Terreno variado</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-title">¿Listo para<br><span>la acción</span>?</div>
+    <p class="cta-sub">Únete al grupo de Telegram y apúntate a la próxima jornada.</p>
+    <a href="https://t.me/lamuradaairsoft" target="_blank" class="btn-cta"><i class="fab fa-telegram"></i> Únete al Grupo</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">La Murada Airsoft</div>
+    <div class="footer-social"><a href="https://t.me/lamuradaairsoft" target="_blank"><i class="fab fa-telegram"></i></a><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a></div>
+    <div class="footer-copy">© 2026 La Murada Airsoft. Todos los derechos reservados.</div>
+  </footer>
+
+</body>
+</html>

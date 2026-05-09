@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>La Murada Airsoft — Inicio</title>
-  <meta name="description" content="La Murada Airsoft. Campo de airsoft en Orihuela, Alicante. El campo donde la acción es real.">
+  <meta name="description" content="Campo de airsoft en Orihuela, Alicante. Partidas regulares, eventos y jornadas.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto+Condensed:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
   <style>
     :root {
       --bg: #0a0a0a;
@@ -21,8 +22,6 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Roboto Condensed', sans-serif;
@@ -75,25 +74,10 @@
       color: var(--text-muted);
       text-decoration: none;
       transition: color 0.3s ease;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: width 0.3s ease;
     }
 
     .nav-links a:hover,
     .nav-links a.active { color: var(--primary); }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after { width: 100%; }
 
     .nav-cta {
       font-family: 'Oswald', sans-serif;
@@ -134,25 +118,14 @@
     .hero-scanline {
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.08) 2px,
-        rgba(0,0,0,0.08) 4px
-      );
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
       pointer-events: none;
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(10,10,10,0.4) 0%,
-        rgba(10,10,10,0.7) 60%,
-        rgba(10,10,10,1) 100%
-      );
+      background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.7) 60%, rgba(10,10,10,1) 100%);
     }
 
     .hero-content {
@@ -268,10 +241,7 @@
       transition: all 0.3s ease;
     }
 
-    .btn-outline:hover {
-      background: rgba(184,149,43,0.1);
-      transform: scale(1.05);
-    }
+    .btn-outline:hover { background: rgba(184,149,43,0.1); transform: scale(1.05); }
 
     .hero-scroll {
       position: absolute;
@@ -331,7 +301,7 @@
       margin-bottom: 3rem;
     }
 
-    /* ── ABOUT / IDEOLOGY ── */
+    /* ── ABOUT ── */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -350,7 +320,6 @@
       width: 100%;
       height: 400px;
       object-fit: cover;
-      display: block;
       filter: grayscale(0.2) brightness(0.9);
     }
 
@@ -360,8 +329,6 @@
       line-height: 1.8;
       margin-bottom: 1.2rem;
     }
-
-    .about-text p:last-child { margin-bottom: 0; }
 
     /* ── VALUES ── */
     .values-grid {
@@ -376,19 +343,11 @@
       border-radius: 4px;
       padding: 2rem;
       transition: all 0.3s ease;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    .value-card.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .value-card:hover {
       border-color: var(--primary);
       transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(184,149,43,0.1);
     }
 
     .value-icon {
@@ -414,32 +373,21 @@
       margin-bottom: 0.8rem;
     }
 
-    .value-card p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
+    .value-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
 
     /* ── GALLERY ── */
-    .gallery-section {
-      background: var(--bg2);
-      padding: 5rem 2rem;
-    }
-
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1rem;
-      max-width: 1200px;
-      margin: 0 auto;
     }
 
     .gallery-item {
       position: relative;
       overflow: hidden;
       border-radius: 4px;
-      border: 1px solid rgba(184,149,43,0.1);
       aspect-ratio: 16/10;
+      border: 1px solid rgba(184,149,43,0.1);
     }
 
     .gallery-item img {
@@ -450,75 +398,7 @@
       transition: all 0.4s ease;
     }
 
-    .gallery-item:hover img {
-      filter: grayscale(0);
-      transform: scale(1.05);
-    }
-
-    .gallery-item-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 50%, rgba(10,10,10,0.8) 100%);
-    }
-
-    /* ── SCHEDULE ── */
-    .schedule-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .schedule-item {
-      background: var(--bg2);
-      border: 1px solid rgba(184,149,43,0.15);
-      border-radius: 4px;
-      padding: 1.8rem;
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      transition: all 0.3s ease;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    .schedule-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .schedule-item:hover {
-      border-color: var(--primary);
-      transform: translateY(-4px);
-    }
-
-    .schedule-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: rgba(184,149,43,0.1);
-      border: 1px solid rgba(184,149,43,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .schedule-icon i { color: var(--primary); font-size: 1.2rem; }
-
-    .schedule-text .time {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 1.3rem;
-      color: var(--primary-light);
-      display: block;
-      margin-bottom: 0.2rem;
-    }
-
-    .schedule-text .label {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+    .gallery-item:hover img { filter: grayscale(0); transform: scale(1.05); }
 
     /* ── LOCATION ── */
     .location-grid {
@@ -528,23 +408,14 @@
       align-items: center;
     }
 
-    .location-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
     .location-info-item {
       display: flex;
       align-items: flex-start;
       gap: 1rem;
+      margin-bottom: 1.5rem;
     }
 
-    .location-info-item i {
-      color: var(--primary);
-      font-size: 1.2rem;
-      margin-top: 0.2rem;
-    }
+    .location-info-item i { color: var(--primary); font-size: 1.3rem; margin-top: 0.1rem; }
 
     .location-info-item .label {
       font-family: 'Oswald', sans-serif;
@@ -555,24 +426,10 @@
       margin-bottom: 0.3rem;
     }
 
-    .location-info-item .value {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
+    .location-info-item .value { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
 
-    .location-map {
-      border-radius: 4px;
-      overflow: hidden;
-      border: 1px solid rgba(184,149,43,0.2);
-    }
-
-    .location-map iframe {
-      width: 100%;
-      height: 350px;
-      border: 0;
-      filter: grayscale(0.4);
-    }
+    .map-wrapper { border-radius: 4px; overflow: hidden; border: 1px solid rgba(184,149,43,0.2); }
+    .map-wrapper iframe { width: 100%; height: 350px; border: 0; filter: grayscale(0.4) contrast(1.1); }
 
     /* ── CTA ── */
     .cta-section {
@@ -604,16 +461,6 @@
 
     .cta-title span { color: var(--primary); }
 
-    .cta-sub {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      margin-bottom: 2.5rem;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-    }
-
     .btn-cta {
       display: inline-flex;
       align-items: center;
@@ -625,7 +472,6 @@
       text-transform: uppercase;
       color: var(--bg);
       background: var(--primary);
-      border: none;
       padding: 1rem 3rem;
       border-radius: 4px;
       text-decoration: none;
@@ -633,11 +479,7 @@
       animation: ctaPulse 3s infinite;
     }
 
-    .btn-cta:hover {
-      background: var(--primary-light);
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(184,149,43,0.4);
-    }
+    .btn-cta:hover { background: var(--primary-light); transform: scale(1.05); }
 
     @keyframes ctaPulse {
       0%, 100% { box-shadow: 0 0 0 0 rgba(184,149,43,0.3); }
@@ -669,34 +511,25 @@
       margin-bottom: 1.5rem;
     }
 
-    .footer-social a {
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      transition: color 0.3s ease;
-    }
-
+    .footer-social a { color: var(--text-muted); font-size: 1.2rem; transition: color 0.3s ease; }
     .footer-social a:hover { color: var(--primary); }
 
-    .footer-copy {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-family: 'Share Tech Mono', monospace;
-    }
+    .footer-copy { font-size: 0.8rem; color: var(--text-muted); font-family: 'Share Tech Mono', monospace; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .about-img img { height: 280px; }
       .location-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
       nav { padding: 0.8rem 1rem; }
       .nav-links { display: none; }
-      .nav-cta { display: none; }
-      .hero-actions { flex-direction: column; align-items: center; }
+      .nav-links.show { display: flex; flex-direction: column; position: absolute top: 60px left: 0 right: 0 bg: rgba(10,10,10,0.98) padding: 1rem; gap: 1rem; }
     }
   </style>
+  <link rel="stylesheet" href="style.css">
+</head>
 </head>
 <body>
 
@@ -706,6 +539,8 @@
     <ul class="nav-links">
       <li><a href="index.html" class="active">Inicio</a></li>
       <li><a href="partidas.html">Partidas</a></li>
+      <li><a href="galeria.html">Fotos</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
     </ul>
     <a href="https://t.me/lamuradaairsoft" target="_blank" class="nav-cta">Apúntate</a>
   </nav>
@@ -716,10 +551,10 @@
     <div class="hero-scanline"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-badge">🎯 Campo de Airsoft en Orihuela</div>
+      <div class="hero-badge">🎯 Campo en Orihuela</div>
       <h1 class="hero-title">LA MURADA<br><span>AIRSOFT</span></h1>
-      <p class="hero-sub">Orihuela, Alicante</p>
-      <p class="hero-desc">El campo donde la acción es real. Terrenos naturales, normativa clara y una comunidad que sabe disfrutar sin dramas. ¿Traes tu réplica?</p>
+      <p class="hero-sub">Orihuela, Alicante</c>
+      <p class="hero-desc">El campo donde la acción es real. Terrenos naturales, normativa clara y una comunidad que sabe disfrutar sin dramas.</p>
       <div class="hero-actions">
         <a href="partidas.html" class="btn-primary">
           <i class="fas fa-crosshairs"></i>
@@ -741,113 +576,47 @@
   <section class="section" id="campo">
     <div class="about-grid">
       <div class="about-img">
-        <img src="campo.jpg" alt="Campo La Murada Airsoft">
+        <img src="campo.jpg" alt="Campo La Murada">
       </div>
       <div class="about-text">
         <div class="section-label">🏴 Quiénes Somos</div>
         <h2 class="section-title">El Campo</h2>
-        <p>La Murada Airsoft lleva años montando partidas en Orihuela y alrededores. Un campo con terreno variado — bosque, ruinas y trincheras naturales — donde cada partida es distinta.</p>
-        <p>No somos un sitio comercial de alquiler. Somos un grupo de jugadores que abre sus jornadas a cualquiera que quiera venir a jugar en serio y con respeto.</p>
-        <p>Si vienes por primera vez, infórmate de las normas y preséntate al equipo. Los nuevos siempre son bienvenidos si vienen con actitud correcta.</p>
+        <p>La Murada Airsoft lleva años montando partidas en Orihuela y alrededores. Terreno variado — bosque, edificios y trincheras — donde cada jornada es distinta.</p>
+        <p>No somos un sitio comercial de alquiler. Somos un grupo de jugadores que abre sus jornadas a cualquiera que venga a jugar en serio y con respeto.</p>
+        <p>Si vienes por primera vez, infórmate de las normas y preséntate al equipo. Los nuevos siempre son bienvenidos.</p>
+        <div class="hero-actions">
+          <a href="galeria.html" class="btn-outline">
+            <i class="fas fa-images"></i> Ver Fotos
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- VALORES / IDEOLOGÍA -->
   <section class="section" id="ideologia">
-    <div class="section-label">💡 Nuestra Filosofía</div>
+    <div class="section-label">💡 Filosofía</div>
     <h2 class="section-title">Cómo Jugamos</h2>
-    <p class="section-desc">Cuatro pilares que definen cada jornada en La Murada Airsoft.</p>
     <div class="values-grid">
       <div class="value-card">
         <div class="value-icon"><i class="fas fa-bolt"></i></div>
         <h3>Fun</h3>
-        <p>Esto es un juego. Si no te lo pasas bien, algo estás haciendo mal. El objetivo principal es disfrutar.</p>
+        <p>Esto es un juego. Si no te lo pasas bien, algo estás haciendo mal.</p>
       </div>
       <div class="value-card">
         <div class="value-icon"><i class="fas fa-users"></i></div>
         <h3>Teamwork</h3>
-        <p>Airsoft es un deporte de equipo. Coordínate con los tuyos, cubre flancos, comunícate. El éxito se construye juntos.</p>
+        <p>Airsoft es deporte de equipo. Coordínate con los tuyos.</p>
       </div>
       <div class="value-card">
         <div class="value-icon"><i class="fas fa-shield-halved"></i></div>
         <h3>Safety</h3>
-        <p>Protección ocular obligatoria en todo momento. Límites de julios claros y cumplimiento de las distancias de seguridad.</p>
+        <p>Protección ocular obligatoria. Límites de julios claros.</p>
       </div>
       <div class="value-card">
         <div class="value-icon"><i class="fas fa-chess"></i></div>
         <h3>Strategy</h3>
-        <p>Pensar antes de disparar. Zonas controladas, movimientos tácticos y adaptación al terreno. Sin estrategia no hay victoria.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALERÍA -->
-  <section class="gallery-section" id="galeria">
-    <div style="max-width:1200px;margin:0 auto;">
-      <div class="section-label">📷 Galería</div>
-      <h2 class="section-title">El Campo en Imágenes</h2>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="campo.jpg" alt="Campo de guerra">
-        <div class="gallery-item-overlay"></div>
-      </div>
-      <div class="gallery-item">
-        <img src="campo.jpg" alt="Zona de bosque">
-        <div class="gallery-item-overlay"></div>
-      </div>
-      <div class="gallery-item">
-        <img src="campo.jpg" alt="Edificio abandonado">
-        <div class="gallery-item-overlay"></div>
-      </div>
-      <div class="gallery-item">
-        <img src="campo.jpg" alt="Acción en partida">
-        <div class="gallery-item-overlay"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HORARIO TIPO -->
-  <section class="section" id="horario">
-    <div class="section-label">⏱ Horario</div>
-    <h2 class="section-title">Horario Tipo de una Jornada</h2>
-    <p class="section-desc">Así es el ritmo de un Sunday Match o jornada estándar.</p>
-    <div class="schedule-grid">
-      <div class="schedule-item">
-        <div class="schedule-icon"><i class="fas fa-door-open"></i></div>
-        <div class="schedule-text">
-          <span class="time">08:30</span>
-          <span class="label">Apertura de Puertas</span>
-        </div>
-      </div>
-      <div class="schedule-item">
-        <div class="schedule-icon"><i class="fas fa-crosshairs"></i></div>
-        <div class="schedule-text">
-          <span class="time">09:30</span>
-          <span class="label">Control de Crono</span>
-        </div>
-      </div>
-      <div class="schedule-item">
-        <div class="schedule-icon"><i class="fas fa-bullhorn"></i></div>
-        <div class="schedule-text">
-          <span class="time">10:30</span>
-          <span class="label">Briefing + Inicio</span>
-        </div>
-      </div>
-      <div class="schedule-item">
-        <div class="schedule-icon"><i class="fas fa-gamepad"></i></div>
-        <div class="schedule-text">
-          <span class="time">10:30 – 14:30</span>
-          <span class="label">Partida Continua</span>
-        </div>
-      </div>
-      <div class="schedule-item">
-        <div class="schedule-icon"><i class="fas fa-flag-checkered"></i></div>
-        <div class="schedule-text">
-          <span class="time">14:30</span>
-          <span class="label">Fin del Juego</span>
-        </div>
+        <p>Pensar antes de actuar. Sin estrategia no hay victoria.</p>
       </div>
     </div>
   </section>
@@ -859,7 +628,7 @@
     <div class="location-grid">
       <div class="location-info">
         <div class="location-info-item">
-          <i class="fas fa-map-pin"></i>
+          <i class="fas fa-map-marker-alt"></i>
           <div>
             <div class="label">Dirección</div>
             <div class="value">La Murada, Orihuela<br>Alicante, España</div>
@@ -869,19 +638,19 @@
           <i class="fas fa-car"></i>
           <div>
             <div class="label">Cómo Llegar</div>
-            <div class="value">Parking disponible en el recinto. Señalización desde la carretera principal. Coordena con tu equipo antes de llegar.</div>
+            <div class="value">Parking disponible en el recinto. Señalización desde la carretera.</div>
           </div>
         </div>
         <div class="location-info-item">
-          <i class="fas fa-circle-info"></i>
+          <i class="fas fa-shoe-alt"></i>
           <div>
-            <div class="label">Nota</div>
-            <div class="value">El campo está en terreno rústico. Calzas resistentes y calzado cerrado son obligatorios. No vengas en chanclas.</div>
+            <div class="label">Nota Importante</div>
+            <div class="value">Calzado cerrado y protección ocular obligatorios. No vengas en chanclas.</div>
           </div>
         </div>
       </div>
-      <div class="location-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50038.7035189!2d-0.96!3d38.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd618600000000001%3A0x0!2sLa%20Murada%2C%20Orihuela%2C%20Alicante!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-wrapper">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!3d50038.7035189!2d-0.96!3d38.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd618600000000001%3A0x0!2sLa%20Murada!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" loading="lazy" referrerpolicy="no-referrer-when-dismiss"></iframe>
       </div>
     </div>
   </section>
@@ -907,16 +676,5 @@
     <div class="footer-copy">© 2026 La Murada Airsoft. Todos los derechos reservados.</div>
   </footer>
 
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.value-card, .schedule-item').forEach(el => observer.observe(el));
-  </script>
 </body>
 </html>
